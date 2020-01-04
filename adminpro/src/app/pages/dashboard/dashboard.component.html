@@ -5,16 +5,11 @@
         <div class="card-body">
             <h4 class="card-title">Lista de reproducción</h4>
             <ul class="list-unstyled">
-              <li class="media">
+              <li *ngFor="let video of videos" class="media">
                   <img class="d-flex mr-3" src="../assets/images/users/1.jpg" width="60" alt="Generic placeholder image">
                   <div class="media-body">
-                      <h5 class="mt-0 mb-1">Viedeo 1</h5> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate.
-                  </div>
-              </li>
-              <li class="media my-4">
-                  <img class="d-flex mr-3" src="../assets/images/users/2.jpg" width="60" alt="Generic placeholder image">
-                  <div class="media-body">
-                      <h5 class="mt-0 mb-1">Video 2</h5>  Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
+                      <h5 class="mt-0 mb-1">{{video.nombre}}</h5>
+                      {{video.descripcion}} 
                   </div>
               </li>
           </ul>
