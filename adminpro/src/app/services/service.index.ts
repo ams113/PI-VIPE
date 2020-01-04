@@ -1,5 +1,6 @@
 export { VerificaTokenGuard } from './guards/verifica-token.guard';
 export { UsuarioService } from './usuario/usuario.service';
+export { VideoService } from './video/video.service';
 export { HospitalService } from './hospital/hospital.service';
 export { MedicoService } from './medico/medico.service';
 export { SettingService } from './settings/setting.service';
