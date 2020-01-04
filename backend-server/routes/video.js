@@ -15,7 +15,7 @@ app.get('/', (req, res, next) => {
     var desde = req.query.desde || 0;
     desde = Number(desde);
 
-    Videos.find({})
+    Video.find({})
     .populate('usuario', 'nombre email')
     .skip(desde)
     .limit(5)
@@ -29,7 +29,7 @@ app.get('/', (req, res, next) => {
                 });
             }
 
-            Videos.count({}, (err, num) => {
+            Video.count({}, (err, num) => {
 
                 res.status(200).json({
                     ok: true,
@@ -126,14 +126,16 @@ app.post('/', mAuth.verificaToken, (req, res) => {
 
     var body = req.body;
 
-    var video = new video({
+    var video = new Video({
         nombre: body.nombre,
+        tipo: body.tipo,
+        descripcion: body.descripcion,
         usuario: req.usuario._id
     });
 
     console.log(video);
 
-    video.save( (err, hospitalGuardado) => {
+    video.save( (err, videoGuardado) => {
         if(err) {
             return res.status(400).json({
                 ok: false,
@@ -143,7 +145,7 @@ app.post('/', mAuth.verificaToken, (req, res) => {
         }
         res.status(201).json({
             ok: true,
-            video: hospitalGuardado
+            video: videoGuardado
         });
 
     } ); 
