@@ -15,7 +15,7 @@ export class VideoService {
   totalvideoes: number = 0;
   constructor(public http: HttpClient, public _usuarioService: UsuarioService) { }
 
-  cargarvideos( desde: number = 0) {
+  cargarVideos( desde: number = 0) {
     const url = environment.URL_SERVICIOS + '/video?desde=' + desde;
     console.log(url);
     return this.http.get( url );

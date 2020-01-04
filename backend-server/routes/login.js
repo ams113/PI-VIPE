@@ -189,6 +189,7 @@ function obtenerMenu( role ) {
           titulo: 'Mantenimiento',
           icono: 'mdi mdi-folder-lock-open',
           submenu: [
+            {titulo: 'Videos', url: '/videos'},
             {titulo: 'Hospitales', url: '/hospitales'},
             {titulo: 'Médicos', url: '/medicos'}
           ]

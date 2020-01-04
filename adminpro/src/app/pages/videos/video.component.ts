@@ -1,11 +1,11 @@
 import { Component, OnInit, ɵConsole } from '@angular/core';
 import { Video } from '../../models/video.model';
-import { HospitalService } from '../../services/hospital/hospital.service';
+import { VideoService } from '../../services/video/video.service';
 import { ModalUploadService } from '../../components/modal-upload/modal-upload.service';
 
 @Component({
   selector: 'app-videos',
-  templateUrl: './videos.component.html',
+  templateUrl: './video.component.html',
   styles: []
 })
 export class VideosComponent implements OnInit {
@@ -16,22 +16,22 @@ export class VideosComponent implements OnInit {
   cargando = true;
 
 
-  constructor(public _hospitalService: HospitalService, public _modalUploadService: ModalUploadService) { }
+  constructor(public _videoService: VideoService, public _modalUploadService: ModalUploadService) { }
 
   ngOnInit() {
-    this.cargarHospitales();
+   /*  this.cargarVideos();
     this._modalUploadService.notificacion
-        .subscribe( () => this.cargarHospitales() );
+        .subscribe( () => this.cargarVideos() ); */
   }
 
-  cargarHospitales() {
-    this.cargando = true;
-    this._hospitalService.cargarHospitales( this.desde )
+  cargarVideos() {
+    /* this.cargando = true;
+    this._videoService.cargarVideos( this.desde )
     .subscribe( (resp: any) => {
-        this.hospitales = resp.hospitales;
+        this.videos = resp.videos;
         this.totalRegistros = resp.total;
       this.cargando = false;
-    });
+    }); */
   }
 
   /* buscarHospital( termino: string ) {
@@ -71,10 +71,10 @@ export class VideosComponent implements OnInit {
       }
   });
 } */
-crearHospital () {
+crearVideo () {
   swal({
-    title: 'Crear Hospital',
-    text: 'Ingrese el nombre del hospital',
+    title: 'Crear Contenido',
+    text: 'Ingrese el nombre del video',
     content: {
       element: "input"
     },
@@ -87,11 +87,11 @@ crearHospital () {
         return;
       }
 
-      this._hospitalService.createHospital( valor )
+      this._videoService.createVideo( valor )
         .subscribe( () => {
           const pag: number = Math.trunc(this.totalRegistros / 5);
           this.desde = pag * 5;
-          this.cargarHospitales();
+          this.cargarVideos();
         } );
   });
 }

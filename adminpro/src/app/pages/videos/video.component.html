@@ -2,7 +2,7 @@
   <div class="col-12">
     <div class="card">
         <div class="card-body">
-            <input #input (keyup)="buscarHospital( input.value )" type="text" class="form-control" placeholder="Buscar hospital...">
+            <input #input (keyup)="buscarVideo( input.value )" type="text" class="form-control" placeholder="Buscar video...">
         </div>
     </div>
   </div>
@@ -23,33 +23,34 @@
       <div class="card">
           <div class="card-body">
               <div class="text-right">
-                  <button (click)="crearHospital()" type="button" class="btn waves-effect waves-light btn-rounded btn-primary">
-                    <i class="fa fa-plus"></i> Crear Hospital</button>
+                  <button (click)="crearVideo()" type="button" class="btn waves-effect waves-light btn-rounded btn-primary">
+                    <i class="fa fa-plus"></i> Crear Contenido</button>
                 </div>
-              <h3 class="card-title">Hospitales registrados ( <small>{{totalRegistros}}</small> )</h3>
+              <h3 class="card-title">Contenidos registrados ( <small>{{totalRegistros}}</small> )</h3>
               <table class="table table-hover">
                 <thead>
                   <tr>
                     <th>Imagen</th>
-                    <th>Hospital</th>
+                    <th>Contenido</th>
                     <th></th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let hospital of hospitales">
+                  <tr *ngFor="let video of videos">
                     <td class="w70">
-                      <img (click)="actualizarHospital(hospital)" [src]="hospital.img | imagen:'hospital'" class="img-50 pointer" alt="hospital.nombre">
+                      <!-- <img (click)="actualizarVideo(video)" [src]="video.img | imagen:'video'" class="img-50 pointer" alt="video.nombre"> -->
+                      <img [src]="video.img | imagen:'video'" class="img-50 pointer" alt="video.nombre">
                     </td>
                     <td>
-                      <input [(ngModel)]="hospital.nombre" name="nombre" type="text" class="form-control" placeholder="Nombre del hospital">
+                      <input [(ngModel)]="video.nombre" name="nombre" type="text" class="form-control" placeholder="Nombre del video">
                     </td>
                    
                     <td>
-                      <button (click)="guardarHospital(hospital)" class="btn btn-primary">
+                      <button (click)="guardarVideo(video)" class="btn btn-primary">
                         <i class="fa fa-save"></i>
                       </button>
 
-                      <button (click)="borrarHospital(hospital)" class="btn btn-danger">
+                      <button (click)="borrarVideo(video)" class="btn btn-danger">
                         <i class="fa fa-trash-o"></i>
                       </button>
                     </td>

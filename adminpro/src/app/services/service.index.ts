@@ -8,6 +8,7 @@ export { SidebarService } from './shared/sidebar.service';
 export { LoginGuardGuard } from './guards/login-guard.guard';
 export { AdminGuard } from './guards/admin.guard';
 export { SubirArchivoService } from './uploadFile/subir-archivo.service';
+export { VideoService } from './video/video.service';
 
 
 
