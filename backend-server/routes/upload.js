@@ -18,6 +18,10 @@ app.put('/:tipo/:id', (req, res, next) => {
     var tipo = req.params.tipo;
     var id = req.params.id;
 
+    console.log(tipo);
+    console.log(id);
+    
+
     // tipos de colección
 
     var tiposValidos = ['hospitales', 'medicos', 'usuarios', 'videos'];

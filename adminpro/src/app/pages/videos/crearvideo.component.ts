@@ -63,8 +63,8 @@ export class CrearVideoComponent implements OnInit {
   }
 
   cambiarFoto() {
-    /* console.log(this.medico._id);
-    this._modalUploadService.mostrar('medicos', this.medico._id); */
+    console.log(this.video._id);
+    this._modalUploadService.mostrar('videos', this.video._id);
   }
 
 }
