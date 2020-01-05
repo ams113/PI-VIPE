@@ -134,7 +134,10 @@ app.post('/', mAuth.verificaToken, (req, res) => {
     var video = new Video({
         nombre: body.nombre,
         tipo: body.tipo,
+        categoria: body.categoria,
+        director: body.director,
         descripcion: body.descripcion,
+        img: body.img,
         usuario: req.usuario._id
     });
 

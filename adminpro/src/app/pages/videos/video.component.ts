@@ -64,7 +64,7 @@ export class VideosComponent implements OnInit {
                 if (this.desde >= this.totalRegistros) {
                   this.paginar(-5);
                 }
-                this.cargarVideos();                
+                this.cargarVideos();
               });
       }
   });

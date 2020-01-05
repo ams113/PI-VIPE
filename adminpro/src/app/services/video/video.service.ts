@@ -33,6 +33,15 @@ export class VideoService {
               .map( (resp: any) => resp.video);
   }
 
+  createVideo2(video: Video) {
+    const url = environment.URL_SERVICIOS + '/video?token=' + this._usuarioService.token;
+    return this.http.post(url, video)
+              .map( (resp: any) => {
+                swal('Ficha Creada', video.nombre, 'success');
+                return resp.video;
+              });
+  }
+
   updateVideo(video: Video) {
     const url = environment.URL_SERVICIOS + '/video/' + video._id + '&'+ video.categoria + '&' + video.director + '&' + video.tipo + '?token=' + this._usuarioService.token;
 

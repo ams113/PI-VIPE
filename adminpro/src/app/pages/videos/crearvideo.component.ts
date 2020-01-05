@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { VideoService } from '../../services/video/video.service';
 import { Video } from '../../models/video.model';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ModalUploadService } from '../../components/modal-upload/modal-upload.service';
 
 @Component({
@@ -12,12 +13,23 @@ import { ModalUploadService } from '../../components/modal-upload/modal-upload.s
 export class CrearVideoComponent implements OnInit {
 
 
-  video: Video = new Video('', '', '', '', '');
+  video: Video = new Video('', '', '', '', '', '', '');
 
 
-  constructor( public _videoService: VideoService, public _modalUploadService: ModalUploadService) {
+  constructor(
+    public _videoService: VideoService,
+    public router: Router,
+    public actRoute: ActivatedRoute,
+    public _modalUploadService: ModalUploadService) {
 
-     }
+      actRoute.params.subscribe( params => {
+        const id = params['id'];
+        if (id !== 'nuevo') {
+          this.cargarVideo(id);
+        }
+      });
+
+  }
 
   ngOnInit() {
 
@@ -28,17 +40,26 @@ export class CrearVideoComponent implements OnInit {
         });
   }
 
+  cargarVideo( id: string ) {
+    this._videoService.obtenerVideo(id)
+          .subscribe( video => {
+            console.log(video);
+            this.video = video;
+          });
+  }
 
   guardarVideo( f: NgForm) {
     if (f.invalid) {
       return;
     }
-    /* this._videoService.createVideo(  )
-        .subscribe( medico => {
-          // this.medico._id = medico._id;
-          // this.router.navigate(['/medico', medico._id]);
+    console.log(this.video);
 
-        }); */
+    this._videoService.createVideo2( this.video )
+        .subscribe( video => {
+           this.video._id = video._id;
+           this.router.navigate(['/video', video._id]);
+
+        });
   }
 
   cambiarFoto() {

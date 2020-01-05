@@ -21,8 +21,13 @@
                         </div>
 
                         <div class="form-group">
+                            <label >Descripción</label>
+                            <input [(ngModel)]="video.descripcion" name="descripcion" type="text" class="form-control" placeholder="Descripción" required>
+                        </div>
+
+                        <div class="form-group">
                             <label>Categoria</label>
-                            <select [(ngModel)]="video.categoria" name="tipo" class="form-control" required>
+                            <select [(ngModel)]="video.categoria" name="categoria" class="form-control" required>
                                 <option value="">Seleccione una categoria</option>
                                 <option value="ACCION">Acción</option>
                                 <option value="AVENTURAS">Aventuras</option>
@@ -42,7 +47,7 @@
 
                         <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">
                           <i class="fa fa-save"></i> Guardar</button>
-                        <a routerLink="/medicos"  class="btn btn-inverse waves-effect waves-light">Cancelar</a>
+                        <a routerLink="/videos"  class="btn btn-inverse waves-effect waves-light">Cancelar</a>
                     </form>
                 </div>
             </div>
@@ -52,7 +57,7 @@
         <div class="card card-body">
           <h4 class="box-title m-b-0">Img. Contenido </h4>
           <p class="text-muted m-b-30 font-13">nombre</p>
-          <img [src]="video.img | imagen:'video'" class="rounded img-fluid" alt="imagen video">
+          <img (click)="cambiarFoto()" [src]="video.img | imagen:'video'" class="rounded img-fluid" alt="imagen video">
         </div>
     </div>
     <!-- <div class="col-md-3" *ngIf="medico._id">

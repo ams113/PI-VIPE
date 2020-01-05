@@ -44,7 +44,7 @@ const pagesRoutes: Routes = [
             },
             { path: 'hospitales', component: HospitalesComponent, data: {titulo: 'Gestión de Hospitales'} },
             { path: 'videos', component: VideosComponent, data: {titulo: 'Gestión de Contenido'} },
-            { path: 'crear-video', component: CrearVideoComponent, data: {titulo: 'Creacion de Contenido'} },
+            { path: 'video/:id', component: CrearVideoComponent, data: {titulo: 'Creacion de Contenido'} },
             { path: 'medicos', component: MedicosComponent, data: {titulo: 'Gestión de Médicos'} },
             { path: 'medico/:id', component: MedicoComponent, data: {titulo: 'Actualizar Médico'} },
             { path: '', pathMatch: 'full', redirectTo: '/dashboard' },
