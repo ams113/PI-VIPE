@@ -17,6 +17,7 @@ import { MedicoComponent } from "./medicos/medico.component";
 import { BusquedaComponent } from './busqueda/busqueda.component';
 import { AdminGuard } from '../services/guards/admin.guard';
 import { VideosComponent } from './videos/video.component';
+import { CrearVideoComponent } from './videos/crearvideo.component';
 
 
 const pagesRoutes: Routes = [
@@ -43,6 +44,7 @@ const pagesRoutes: Routes = [
             },
             { path: 'hospitales', component: HospitalesComponent, data: {titulo: 'Gestión de Hospitales'} },
             { path: 'videos', component: VideosComponent, data: {titulo: 'Gestión de Contenido'} },
+            { path: 'crear-video', component: CrearVideoComponent, data: {titulo: 'Creacion de Contenido'} },
             { path: 'medicos', component: MedicosComponent, data: {titulo: 'Gestión de Médicos'} },
             { path: 'medico/:id', component: MedicoComponent, data: {titulo: 'Actualizar Médico'} },
             { path: '', pathMatch: 'full', redirectTo: '/dashboard' },

@@ -22,6 +22,7 @@ import { UsuariosComponent } from './usuarios/usuarios.component';
 import { ModalUploadComponent } from '../components/modal-upload/modal-upload.component';
 import { HospitalesComponent } from './hospitales/hospitales.component';
 import { VideosComponent } from './videos/video.component';
+import { CrearVideoComponent } from './videos/crearvideo.component';
 import { MedicosComponent } from './medicos/medicos.component';
 import { MedicoComponent } from './medicos/medico.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
@@ -45,7 +46,8 @@ import { BusquedaComponent } from './busqueda/busqueda.component';
         MedicosComponent,
         MedicoComponent,
         BusquedaComponent,
-        VideosComponent
+        VideosComponent,
+        CrearVideoComponent
     ],
     exports: [
         DashboardComponent,
