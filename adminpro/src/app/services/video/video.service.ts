@@ -34,7 +34,7 @@ export class VideoService {
   }
 
   updateVideo(video: Video) {
-    const url = environment.URL_SERVICIOS + '/video/' + video._id + '?token=' + this._usuarioService.token;
+    const url = environment.URL_SERVICIOS + '/video/' + video._id + '&'+ video.categoria + '&' + video.director + '?token=' + this._usuarioService.token;
 
     return this.http.put( url, { nombre: video.nombre } )
               .map( (resp: any) => {
@@ -43,7 +43,7 @@ export class VideoService {
               });
   }
 
-  borrarVideo(id: string) {
+  borrarVideo(id: string) {  
     const url = environment.URL_SERVICIOS + '/video/' + id + '?token=' + this._usuarioService.token;
     return this.http.delete( url )
               .map( resp => swal('Video Borrado', 'Eliminado correctamente', 'success'));

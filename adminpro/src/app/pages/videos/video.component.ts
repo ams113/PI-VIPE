@@ -19,64 +19,62 @@ export class VideosComponent implements OnInit {
   constructor(public _videoService: VideoService, public _modalUploadService: ModalUploadService) { }
 
   ngOnInit() {
-   /*  this.cargarVideos();
+    this.cargarVideos();
     this._modalUploadService.notificacion
-        .subscribe( () => this.cargarVideos() ); */
+        .subscribe( () => this.cargarVideos() );
   }
 
   cargarVideos() {
-    /* this.cargando = true;
+    this.cargando = true;
     this._videoService.cargarVideos( this.desde )
     .subscribe( (resp: any) => {
         this.videos = resp.videos;
         this.totalRegistros = resp.total;
       this.cargando = false;
-    }); */
+    }); 
   }
 
-  /* buscarHospital( termino: string ) {
+  buscarVideo( termino: string ) {
     if (termino.length <= 0) {
-      this.cargarHospitales();
+      this.cargarVideos();
       return;
     }
     this.cargando = true;
 
-    this._hospitalService.buscarHospital(termino)
-      .subscribe( ( hospital: Hospital[] ) => {
-        this.hospitales = hospital;
+    this._videoService.buscarVideo(termino)
+      .subscribe( ( videos: Video[] ) => {
+        this.videos = videos;
         this.cargando = false;
       });
-} */
+} 
 
-/* borrarHospital(hospital: Hospital) {
-  // console.log(usuario);
+ borrarvideo(video: Video) {
   swal({
     title: '¿Estas seguro?',
-    text: 'Esta a punto de borrar a ' + hospital.nombre,
+    text: 'Esta a punto de borrar a ' + video.nombre,
     icon: 'warning',
     buttons: [true, true],
     dangerMode: true,
   }).then (borrar => {
       console.log( borrar );
       if (borrar) {
-        this._hospitalService.borrarHospital(hospital._id)
+        this._videoService.borrarVideo(video._id)
               .subscribe(borrado => {
                 this.totalRegistros--;
                 if (this.desde >= this.totalRegistros) {
                   this.paginar(-5);
-                } else {
-                  this.cargarHospitales();
                 }
+                this.cargarVideos();                
               });
       }
   });
-} */
+} 
 crearVideo () {
   swal({
     title: 'Crear Contenido',
     text: 'Ingrese el nombre del video',
     content: {
-      element: "input"
+      element: "input",      
     },
     icon: 'info',
     buttons: [true, true],
@@ -96,8 +94,8 @@ crearVideo () {
   });
 }
 
-/* guardarHospital(hospital: Hospital) {
-  this._hospitalService.updateHospital( hospital )
+guardarVideo(videos: Video) {
+  this._videoService.updateVideo( videos )
   .subscribe();
 }
   paginar( value: number ) {
@@ -112,11 +110,11 @@ crearVideo () {
     }
 
     this.desde += value;
-    this.cargarHospitales();
+    this.cargarVideos();
   }
 
-  actualizarHospital(hospital: Hospital) {
-    this._modalUploadService.mostrar('hospitales', hospital._id);
-  } */
+  actualizarVideo(videos: Video) {
+    this._modalUploadService.mostrar('videos', videos._id);
+  }
 
 }
