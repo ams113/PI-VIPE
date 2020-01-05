@@ -26,6 +26,9 @@ export class ImagenPipe implements PipeTransform {
       case 'hospital':
             url += '/hospitales/' + img;
             break;
+      case 'video':
+            url += '/videos/' + img;
+            break;            
       default:
             console.log('tipo de imagen no existe (usuarios, medicos, hospitales)');
             url += '/usuarios/default';
