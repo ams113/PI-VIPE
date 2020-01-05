@@ -34,12 +34,24 @@ export class VideoService {
   }
 
   createVideo2(video: Video) {
-    const url = environment.URL_SERVICIOS + '/video?token=' + this._usuarioService.token;
+    let url = environment.URL_SERVICIOS + '/video';
+    if (video._id) {
+      // actualizar
+      url += '/' + video._id;
+      url += '?token=' + this._usuarioService.token;
+
+      return this.http.put(url, video)
+            .map( (resp: any) => {
+              swal('Contenido Actualizado', video.nombre, 'success');
+              return resp.video;
+            });
+    } else {
     return this.http.post(url, video)
               .map( (resp: any) => {
                 swal('Ficha Creada', video.nombre, 'success');
                 return resp.video;
               });
+    }
   }
 
   updateVideo(video: Video) {

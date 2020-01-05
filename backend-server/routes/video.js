@@ -76,7 +76,7 @@ app.get('/:id', (req, res) => {
 //  Actualizar video
 // ===================================================
 
-app.put('/:id&:categoria&:director&:tipo', mAuth.verificaToken, (req, res) => {
+/* app.put('/:id&:categoria&:director&:tipo', mAuth.verificaToken, (req, res) => {
     
     var id = req.params.id;
     var categoria = req.params.categoria;
@@ -121,6 +121,56 @@ app.put('/:id&:categoria&:director&:tipo', mAuth.verificaToken, (req, res) => {
             });
         }); 
     });
+}); */
+
+// ===================================================
+//  Actualizar video 2
+// ===================================================
+
+app.put('/:id', mAuth.verificaToken, (req, res) => {
+    
+    var id = req.params.id;
+    var body = req.body;
+
+    Video.findById( id, (err, video) => {
+        if(err) {
+            return res.status(500).json({
+                ok: false,
+                msg: 'Error al buscar video!',
+                errors: err
+            });
+        } 
+        if(!video) {
+            return res.status(400).json({
+                ok: false,
+                msg: `El video con el id ${id} no existe`,
+                errors: { message: 'No existe un video con ese ID'}
+            });
+        }
+
+        video.nombre = body.nombre;
+        video.tipo = body.tipo;
+        video.categoria = body.categoria;
+        video.director =  body.director;
+        video.descripcion = body.descripcion;
+        video.usuario = req.usuario._id;
+        
+     
+        video.save( (err, videoGuardado) => {
+            if(err) {
+                return res.status(400).json({
+                    ok: false,
+                    msg: 'Error al actualizar video',
+                    errors: err
+                });
+            }
+
+            res.status(200).json({
+                ok: true,
+                video: videoGuardado
+            });
+        }); 
+    });
 });
 
 // ===================================================
@@ -137,7 +187,6 @@ app.post('/', mAuth.verificaToken, (req, res) => {
         categoria: body.categoria,
         director: body.director,
         descripcion: body.descripcion,
-        img: body.img,
         usuario: req.usuario._id
     });
 
