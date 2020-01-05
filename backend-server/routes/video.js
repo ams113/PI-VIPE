@@ -76,9 +76,11 @@ app.get('/:id', (req, res) => {
 //  Actualizar video
 // ===================================================
 
-app.put('/:id', mAuth.verificaToken, (req, res) => {
-
+app.put('/:id&:categoria&:director', mAuth.verificaToken, (req, res) => {
+    
     var id = req.params.id;
+    var categoria = req.params.categoria;
+    var director = req.params.director;
     var body = req.body;
 
     Video.findById( id, (err, video) => {
@@ -98,9 +100,10 @@ app.put('/:id', mAuth.verificaToken, (req, res) => {
         }
 
         video.nombre = body.nombre;
+        video.categoria = categoria;
+        video.director =  director;
         video.usuario = req.usuario._id;
-        console.log(video);
-
+     
         video.save( (err, videoGuardado) => {
             if(err) {
                 return res.status(400).json({
@@ -158,7 +161,7 @@ app.post('/', mAuth.verificaToken, (req, res) => {
 app.delete('/:id', mAuth.verificaToken, (req, res) => {
 
     var id = req.params.id;
-    
+    console.log("entro aqui");
     Video.findByIdAndRemove(id, (err, videoBorrado) => {
         if(err) {
             return res.status(500).json({

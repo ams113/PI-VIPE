@@ -31,26 +31,48 @@
                 <thead>
                   <tr>
                     <th>Imagen</th>
-                    <th>Contenido</th>
+                    <th>Tipo</th>
+                    <th>Título</th>
+                    <th>Categoría</th>
+                    <th>Director</th>
                     <th></th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr *ngFor="let video of videos">
                     <td class="w70">
-                      <!-- <img (click)="actualizarVideo(video)" [src]="video.img | imagen:'video'" class="img-50 pointer" alt="video.nombre"> -->
-                      <img [src]="video.img | imagen:'video'" class="img-50 pointer" alt="video.nombre">
+                      <img (click)="actualizarVideo(video)" [src]="video.img | imagen:'video'" class="img-50 pointer" alt="video.nombre"> 
+                      <!--<img [src]="video.img | imagen:'video'" class="img-50 pointer" alt="video.nombre">-->
                     </td>
+                    <td>
+                      <select [(ngModel)]="video.tipo" name="tipo" class="form-control">
+                        <option value="PELICULA">Pelicula</option>
+                        <option value="SERIE">Serie</option>
+                      </select>
+                    </td>                    
                     <td>
                       <input [(ngModel)]="video.nombre" name="nombre" type="text" class="form-control" placeholder="Nombre del video">
                     </td>
-                   
+                    <td>
+                      <select [(ngModel)]="video.categoria" name="categoria" class="form-control">
+                        <option value="ACCION">Acción</option>
+                        <option value="AVENTURAS">Aventuras</option>
+                        <option value="COMEDIAS">Comedias</option>
+                        <option value="BELICAS">Belicas</option>
+                        <option value="MUSICALES">Musicales</option>
+                        <option value="TERROR">Terror</option>
+                        <option value="CIENCIA FICCION">Ciencia Ficción</option>
+                      </select>
+                    </td>
+                    <td>
+                      <input [(ngModel)]="video.director" name="nombre" type="text" class="form-control" placeholder="Director">
+                    </td>
                     <td>
                       <button (click)="guardarVideo(video)" class="btn btn-primary">
                         <i class="fa fa-save"></i>
                       </button>
 
-                      <button (click)="borrarVideo(video)" class="btn btn-danger">
+                      <button (click)="borrarvideo(video)" class="btn btn-danger">
                         <i class="fa fa-trash-o"></i>
                       </button>
                     </td>
