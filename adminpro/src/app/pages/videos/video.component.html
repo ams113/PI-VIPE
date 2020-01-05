@@ -23,7 +23,7 @@
       <div class="card">
           <div class="card-body">
               <div class="text-right">
-                  <button (click)="crearVideo()" type="button" class="btn waves-effect waves-light btn-rounded btn-primary">
+                  <button [routerLink]="['/crear-video']" type="button" class="btn waves-effect waves-light btn-rounded btn-primary">
                     <i class="fa fa-plus"></i> Crear Contenido</button>
                 </div>
               <h3 class="card-title">Contenidos registrados ( <small>{{totalRegistros}}</small> )</h3>
