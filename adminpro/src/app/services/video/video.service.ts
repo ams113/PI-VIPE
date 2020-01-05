@@ -34,7 +34,7 @@ export class VideoService {
   }
 
   updateVideo(video: Video) {
-    const url = environment.URL_SERVICIOS + '/video/' + video._id + '&'+ video.categoria + '&' + video.director + '?token=' + this._usuarioService.token;
+    const url = environment.URL_SERVICIOS + '/video/' + video._id + '&'+ video.categoria + '&' + video.director + '&' + video.tipo + '?token=' + this._usuarioService.token;
 
     return this.http.put( url, { nombre: video.nombre } )
               .map( (resp: any) => {
