@@ -6,6 +6,7 @@ var fs = require('fs');
 var Hospital = require('../models/hospital');
 var Medico = require('../models/medico');
 var Usuario = require('../models/usuario');
+var video= require('../models/video');
 
 //iniciar variables
 var app = express();
@@ -19,7 +20,7 @@ app.put('/:tipo/:id', (req, res, next) => {
 
     // tipos de colección
 
-    var tiposValidos = ['hospitales', 'medicos', 'usuarios'];
+    var tiposValidos = ['hospitales', 'medicos', 'usuarios', 'videos'];
 
     if (tiposValidos.indexOf(tipo) < 0) {
         res.status(400).json({
@@ -203,6 +204,49 @@ function uploadByType (tipo, id, nombreArchivo, res) {
                         ok: true,
                         msg: "Imagen de usuario actualizada",
                         hospital: hospitalActualizado
+                    });
+             });
+        });
+    }
+
+    if (tipo  === 'videos') {
+        
+        video.findById(id, (err, video) => {
+
+            if (!video) {
+                return res.status(400).json({
+                    ok: false,
+                    msg: 'video no existe',
+                    errors: { message: 'video no existe' }
+                });
+            }
+
+            var oldPath = './uploads/videos/' + video.img;
+
+            // Si existe, elimina la imagen anterior
+
+            if( fs. existsSync(oldPath)) {
+                fs.unlink( oldPath, err => {
+                    if (err) {
+                        return res.status(500).json({
+                            ok: false,
+                            msg: 'Error al sobrescribir archivo',
+                            errors: err
+                        });
+                    }
+                });
+            }
+
+            video.img = nombreArchivo;
+
+             video.save((err, videoActualizado) => {
+
+                videoActualizado.password = '******';
+
+                return res.status(200).json({
+                        ok: true,
+                        msg: "Imagen de usuario actualizada",
+                        video: videoActualizado
                     });
              });
         });
