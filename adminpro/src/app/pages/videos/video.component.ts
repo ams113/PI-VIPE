@@ -13,7 +13,7 @@ export class VideosComponent implements OnInit {
   videos: Video[] = [];
   totalRegistros = 0;
   desde = 0;
-  cargando = true;
+  cargando = false;
 
 
   constructor(public _videoService: VideoService, public _modalUploadService: ModalUploadService) { }
