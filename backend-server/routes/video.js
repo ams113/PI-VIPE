@@ -76,11 +76,12 @@ app.get('/:id', (req, res) => {
 //  Actualizar video
 // ===================================================
 
-app.put('/:id&:categoria&:director', mAuth.verificaToken, (req, res) => {
+app.put('/:id&:categoria&:director&:tipo', mAuth.verificaToken, (req, res) => {
     
     var id = req.params.id;
     var categoria = req.params.categoria;
     var director = req.params.director;
+    var tipo = req.params.tipo;
     var body = req.body;
 
     Video.findById( id, (err, video) => {
@@ -102,6 +103,7 @@ app.put('/:id&:categoria&:director', mAuth.verificaToken, (req, res) => {
         video.nombre = body.nombre;
         video.categoria = categoria;
         video.director =  director;
+        video.tipo = tipo;
         video.usuario = req.usuario._id;
      
         video.save( (err, videoGuardado) => {
