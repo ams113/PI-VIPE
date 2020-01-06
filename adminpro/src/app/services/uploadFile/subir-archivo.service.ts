@@ -35,4 +35,32 @@ export class SubirArchivoService {
     });
   }
 
+  subirFichero( archivo: File, tipo: string, id: string) {        
+    console.log(tipo);
+    console.log(id);
+
+    return new Promise( (resolve, reject) => {
+      const formData = new FormData();
+      const xhr = new XMLHttpRequest();
+
+      formData.append('videos', archivo, archivo.name);
+      
+      xhr.onreadystatechange = function() {
+        if ( xhr.readyState === 4 ) {
+          if ( xhr.status === 200 ) {             
+            resolve( JSON.parse(xhr.response) );
+          } else {
+            console.log( 'Fallo al subir el video' );
+            reject( xhr.response);
+          }
+        }
+      };
+      
+      const url = environment.URL_SERVICIOS + '/uploadFile/' + tipo + '/' + id;
+      xhr.open('PUT', url, true);
+      xhr.send(formData);
+    });
+  }
+
+
 }

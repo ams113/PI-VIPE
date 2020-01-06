@@ -2,6 +2,7 @@ import { Component, OnInit, ɵConsole } from '@angular/core';
 import { Video } from '../../models/video.model';
 import { VideoService } from '../../services/video/video.service';
 import { ModalUploadService } from '../../components/modal-upload/modal-upload.service';
+import { ModalUploadFileService } from '../../components/modal-uploadFile/modal-uploadFile.service';
 
 @Component({
   selector: 'app-videos',
@@ -16,12 +17,14 @@ export class VideosComponent implements OnInit {
   cargando = false;
 
 
-  constructor(public _videoService: VideoService, public _modalUploadService: ModalUploadService) { }
+  constructor(public _videoService: VideoService, public _modalUploadService: ModalUploadService, public _modalUploadFileService: ModalUploadFileService) { }
 
   ngOnInit() {
     this.cargarVideos();
     this._modalUploadService.notificacion
-        .subscribe( () => this.cargarVideos() );
+      .subscribe( () => this.cargarVideos() );   
+    this._modalUploadFileService.notificacion
+      .subscribe( () => this.cargarVideos() );  
   }
 
   cargarVideos() {
@@ -115,6 +118,10 @@ guardarVideo(videos: Video) {
 
   actualizarVideo(videos: Video) {
     this._modalUploadService.mostrar('videos', videos._id);
+  }
+
+  actualizarFichero(videos: Video) {         
+    this._modalUploadFileService.mostrar('videos', videos._id);
   }
 
 }

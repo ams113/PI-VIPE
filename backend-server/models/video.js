@@ -7,7 +7,10 @@ var videoSchema =new Schema({
     categoria: { type: String},
     director: { type: String},
     descripcion: { type: String},
-	img: { type: String, required: false },
+    fichero: {type: String, required: false },
+    rutaFichero: {type: String},
+    nameFichero: {type: String},
+    img: { type: String, required: false },
 	usuario: { type: Schema.Types.ObjectId, ref: 'Usuario' }
 }, { collection: 'videos' });
 

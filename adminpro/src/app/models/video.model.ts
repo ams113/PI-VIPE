@@ -6,6 +6,7 @@ export class Video {
         public categoria: string,
         public director?: string,
         public descripcion?: string,
+        public fichero?: string,
         public img?: string,
         public _id?: string
     ) { }
