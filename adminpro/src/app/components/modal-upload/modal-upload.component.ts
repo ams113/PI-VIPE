@@ -27,15 +27,11 @@ export class ModalUploadComponent implements OnInit {
     }
     console.log('File', archivo);
 
-    for (let tipo of tipos) {
-
-      if ( archivo.type.indexOf(tipo) < 0) {
+      if ( archivo.type.indexOf(tipos[0]) < 0 && archivo.type.indexOf(tipos[1]) < 0) {
         swal('Formato erroneo', 'El archivo seleccionado no es una imagen o un video', 'error');
         this.imagenSubir = null;
         return;
       }
-
-    }
 
     this.imagenSubir = archivo;
 
