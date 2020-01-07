@@ -36,6 +36,7 @@ export class CrearVideoComponent implements OnInit {
     this._modalUploadService.notificacion
         .subscribe( resp => {
           console.log( resp );
+          this.cargarVideo(this.video._id);
           // this.medico.img = resp.medico.img;
         });
   }
@@ -63,12 +64,10 @@ export class CrearVideoComponent implements OnInit {
   }
 
   cambiarFoto() {
-    console.log(this.video._id);
     this._modalUploadService.mostrar('videos', this.video._id);
   }
 
   subirVideo() {
-    console.log(this.video._id);
     this._modalUploadService.mostrar('ficheros', this.video._id);
   }
 

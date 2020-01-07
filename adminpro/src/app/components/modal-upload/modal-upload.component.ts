@@ -25,30 +25,29 @@ export class ModalUploadComponent implements OnInit {
       this.imagenSubir = null;
       return;
     }
-    console.log('File', archivo);
-
-      if ( archivo.type.indexOf(tipos[0]) < 0 && archivo.type.indexOf(tipos[1]) < 0) {
-        swal('Formato erroneo', 'El archivo seleccionado no es una imagen o un video', 'error');
-        this.imagenSubir = null;
-        return;
-      }
+    
+    if ( archivo.type.indexOf(tipos[0]) < 0 && archivo.type.indexOf(tipos[1]) < 0) {
+      swal('Formato erroneo', 'El archivo seleccionado no es una imagen o un video', 'error');
+      this.imagenSubir = null;
+      return;
+    }
 
     this.imagenSubir = archivo;
-
-    // tslint:disable-next-line:prefer-const
     let reader = new FileReader();
-    // tslint:disable-next-line:prefer-const
-    let urlImagenTemp = reader.readAsDataURL( archivo );
-
-    reader.onloadend = () => this.imagenTemp = reader.result;
-
+    reader.readAsDataURL( archivo );
+    if(archivo.type.indexOf(tipos[1]) == 0) {
+      reader.onloadend = () => this.imagenTemp = '';
+    }
+    else {
+      reader.onloadend = () => this.imagenTemp = reader.result;
+    }    
   }
 
   subirImagen() {
     this._subirArchivo.subirArchivo( this.imagenSubir, this._modalUploadService.tipo, this._modalUploadService.id )
     .then( resp => {
-      console.log(resp);
       this._modalUploadService.notificacion.emit( resp );
+      console.log("SALIRRRR");
       this.cerrarModal();
     })
     .catch( err => {
