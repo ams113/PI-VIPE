@@ -14,53 +14,32 @@ export class SubirArchivoService {
     return new Promise( (resolve, reject) => {
       const formData = new FormData();
       const xhr = new XMLHttpRequest();
+      let url = '';
 
-      formData.append('imagen', archivo, archivo.name);
+      if (archivo.type.indexOf('image') === 0) {
+        formData.append('imagen', archivo, archivo.name);
+         url = environment.URL_SERVICIOS + '/upload/' + tipo + '/' + id;
+      }
+      if (archivo.type.indexOf('video') === 0) {
+        formData.append('video', archivo, archivo.name);
+        url = environment.URL_SERVICIOS + '/uploadFile/' + tipo + '/' + id;
+      }
 
-      xhr.onreadystatechange = function() {
-        if ( xhr.readyState === 4 ) {
-          if ( xhr.status === 200 ) {
-             // console.log('Imagen subida');
-            resolve( JSON.parse(xhr.response) );
-          } else {
-            console.log( 'Fallo al subir la imagen' );
-            reject( xhr.response);
-          }
-        }
-      };
+          xhr.onreadystatechange = function() {
+            if ( xhr.readyState === 4 ) {
+              if ( xhr.status === 200 ) {
+                 // console.log('Imagen subida');
+                resolve( JSON.parse(xhr.response) );
+              } else {
+                console.log( 'Fallo al subir el archivo' );
+                reject( xhr.response);
+              }
+            }
+          };
 
-      const url = environment.URL_SERVICIOS + '/upload/' + tipo + '/' + id;
-      xhr.open('PUT', url, true);
-      xhr.send(formData);
+          xhr.open('PUT', url, true);
+          xhr.send(formData);
     });
   }
-
-  subirFichero( archivo: File, tipo: string, id: string) {        
-    console.log(tipo);
-    console.log(id);
-
-    return new Promise( (resolve, reject) => {
-      const formData = new FormData();
-      const xhr = new XMLHttpRequest();
-
-      formData.append('videos', archivo, archivo.name);
-      
-      xhr.onreadystatechange = function() {
-        if ( xhr.readyState === 4 ) {
-          if ( xhr.status === 200 ) {             
-            resolve( JSON.parse(xhr.response) );
-          } else {
-            console.log( 'Fallo al subir el video' );
-            reject( xhr.response);
-          }
-        }
-      };
-      
-      const url = environment.URL_SERVICIOS + '/uploadFile/' + tipo + '/' + id;
-      xhr.open('PUT', url, true);
-      xhr.send(formData);
-    });
-  }
-
 
 }

@@ -69,7 +69,7 @@ export class CrearVideoComponent implements OnInit {
 
   subirVideo() {
     console.log(this.video._id);
-    this._modalUploadService.mostrar('data', this.video._id);
+    this._modalUploadService.mostrar('ficheros', this.video._id);
   }
 
 }
