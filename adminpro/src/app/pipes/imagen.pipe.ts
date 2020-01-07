@@ -29,6 +29,9 @@ export class ImagenPipe implements PipeTransform {
       case 'video':
             url += '/videos/' + img;
             break;
+      case 'data':
+            url += '/ficheros/' + img;
+            break;
       default:
             console.log('tipo de fichero no existe (usuarios, medicos, hospitales, videos, ficheros)');
             url += '/usuarios/default';

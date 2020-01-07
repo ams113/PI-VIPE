@@ -12,8 +12,8 @@
                         <img [src]="usuario.img | imagen" alt="user" /><span class="hide-menu">{{ usuario.nombre }} </span></a>
                     <ul aria-expanded="false" class="collapse">
                         <li><a routerLinkActive="active" routerLink="/profile">Mi Perfil</a></li>
-                        <li><a href="javascript:void()">My Balance</a></li>
-                        <li><a href="javascript:void()">Inbox</a></li>
+                        <!-- <li><a href="javascript:void()">My Balance</a></li> -->
+                        <!-- <li><a href="javascript:void()">Inbox</a></li> -->
                         <li><a routerLinkActive="active" routerLink="/account-settings">Account Setting</a></li>
                         <li><a (click)="_usuarioServide.logout()" class="pointer">Logout</a></li>
                     </ul>
