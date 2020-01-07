@@ -33,6 +33,7 @@ var videoRoutes = require('./routes/video');
 var medicoRoutes = require('./routes/medico');
 var busquedaRoutes = require('./routes/search');
 var uploadRoutes = require('./routes/upload');
+var uploadFileRoutes = require('./routes/uploadFiles');
 var imagenesRoutes = require('./routes/imagenes');
 
 //conexión a la base de Datos
@@ -53,6 +54,7 @@ app.use('/video', videoRoutes);
 app.use('/medico', medicoRoutes);
 app.use('/busqueda', busquedaRoutes);
 app.use('/upload', uploadRoutes);
+app.use('/uploadFile', uploadFileRoutes);
 app.use('/imagenes', imagenesRoutes);
 app.use('/', appRoutes);
 

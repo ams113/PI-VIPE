@@ -8,7 +8,8 @@ import { SidebarComponent } from '../shared/sidebar/sidebar.component';
 import { BreadcrumbsComponent } from '../shared/breadcrumbs/breadcrumbs.component';
 import { CommonModule } from '@angular/common';
 import { PipesModule } from '../pipes/pipes.module';
-import { ModalUploadComponent } from '../components/modal-upload/modal-upload.component';
+import { ModalUploadComponent} from '../components/modal-upload/modal-upload.component';
+import { ModalUploadFileComponent} from '../components/modal-uploadFile/modal-uploadFile.component';
 
 @NgModule({
     imports: [
@@ -21,13 +22,15 @@ import { ModalUploadComponent } from '../components/modal-upload/modal-upload.co
         HeaderComponent,
         SidebarComponent,
         BreadcrumbsComponent,
-        ModalUploadComponent
+        ModalUploadComponent,
+        ModalUploadFileComponent
     ],
     exports: [
         NopageComponent,
         HeaderComponent,
         SidebarComponent,
         BreadcrumbsComponent,
+        ModalUploadFileComponent,
         ModalUploadComponent
     ]
 })

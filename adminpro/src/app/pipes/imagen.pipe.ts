@@ -30,7 +30,7 @@ export class ImagenPipe implements PipeTransform {
             url += '/videos/' + img;
             break;
       default:
-            console.log('tipo de imagen no existe (usuarios, medicos, hospitales)');
+            console.log('tipo de fichero no existe (usuarios, medicos, hospitales, videos, ficheros)');
             url += '/usuarios/default';
     }
     return url;

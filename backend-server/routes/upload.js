@@ -18,11 +18,8 @@ app.put('/:tipo/:id', (req, res, next) => {
     var tipo = req.params.tipo;
     var id = req.params.id;
 
-    console.log(tipo);
-    console.log(id);
-    
 
-    // tipos de colección
+     // tipos de colección
 
     var tiposValidos = ['hospitales', 'medicos', 'usuarios', 'videos'];
 
@@ -50,7 +47,7 @@ app.put('/:tipo/:id', (req, res, next) => {
 
     // extensiones aceptadas
 
-    var extValidas = ['png', 'jpg', 'gif', 'jpeg'];
+    var extValidas = ['png', 'jpg', 'gif', 'jpeg','mpeg',',mp4'];
 
     if (extValidas.indexOf(extArchivo) < 0 ) {
         return res.status(400).json({

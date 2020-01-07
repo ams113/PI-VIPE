@@ -1,0 +1,24 @@
+<div class="fondo-negro animated fadeIn" [ngClass]="_modalUploadFileService.oculto">
+    <div class="modal " style="display: block; background-color: rgba(0,0,0, 0.4) !important;" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Subir Fichero</h5>
+          <button (click)="cerrarModal()" type="button" class="close" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-center">
+          <img *ngIf="!ficheroTemp" [src]="'xxx' | fichero" class="w150"> 
+          <img *ngIf="ficheroTemp" [src]="ficheroTemp" class="w150">
+          <input (change)="seleccionFichero($event.target.files[0])" type="file">
+        </div>
+        <div class="modal-footer">
+          <button (click)="cerrarModal()" type="button" class="btn btn-secondary" >Cerrar</button>
+          <button (click)="subirFichero()" [disabled]="!ficheroTemp" type="button" class="btn btn-primary">Subir Fichero</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  

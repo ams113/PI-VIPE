@@ -46,6 +46,7 @@ export class VideoService {
               return resp.video;
             });
     } else {
+      url += '?token=' + this._usuarioService.token;
     return this.http.post(url, video)
               .map( (resp: any) => {
                 swal('Ficha Creada', video.nombre, 'success');

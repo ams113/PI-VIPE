@@ -31,6 +31,7 @@
                 <thead>
                   <tr>
                     <th>Imagen</th>
+                    <th>Fichero</th>
                     <th>Tipo</th>
                     <th>Título</th>
                     <th>Categoría</th>
@@ -41,8 +42,10 @@
                 <tbody>
                   <tr *ngFor="let video of videos">
                     <td class="w70">
-                      <img (click)="actualizarVideo(video)" [src]="video.img | imagen:'video'" class="img-50 pointer" alt="video.nombre"> 
-                      <!--<img [src]="video.img | imagen:'video'" class="img-50 pointer" alt="video.nombre">-->
+                      <img (click)="actualizarVideo(video)" [src]="video.img | imagen:'video'" class="img-50 pointer" alt="video.nombre">                       
+                    </td>
+                    <td class="w70">
+                      <img (click)="actualizarFichero(video)" [src]="video.img | imagen:'video'" class="img-50 pointer" alt="video.nombre">    
                     </td>
                     <td>
                       <select [(ngModel)]="video.tipo" name="tipo" class="form-control">
@@ -52,6 +55,9 @@
                     </td>                    
                     <td>
                       <input [(ngModel)]="video.nombre" name="nombre" type="text" class="form-control" placeholder="Nombre del video">
+                    </td>
+                    <td>
+                      <input [(ngModel)]="video.descripcion" name="descripcion" type="text" class="form-control" placeholder="descripcion">
                     </td>
                     <td>
                       <select [(ngModel)]="video.categoria" name="categoria" class="form-control">

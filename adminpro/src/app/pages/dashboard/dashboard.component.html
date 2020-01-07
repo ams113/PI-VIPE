@@ -3,13 +3,15 @@
   <div class="col-6">
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title">Lista de reproducción</h4>
+            <h4 class="card-title"><b>Lista de contenido</b></h4>
             <ul class="list-unstyled">
               <li *ngFor="let video of videos" class="media">
-                  <img class="d-flex mr-3" src="../assets/images/users/1.jpg" width="60" alt="Generic placeholder image">
+                  <img class="d-flex mr-3" [src]="video.img | imagen:'video'" width="60" alt="Generic placeholder image">
                   <div class="media-body">
-                      <h5 class="mt-0 mb-1">{{video.nombre}}</h5>
-                      {{video.descripcion}} 
+                      <h5 class="mt-0 mb-1">
+                        <b>{{video.nombre}}</b>
+                      </h5>
+                      <p>{{video.descripcion}} </p>
                   </div>
               </li>
           </ul>

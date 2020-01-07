@@ -23,7 +23,7 @@ app.get('/', (req, res, next) => {
          (err, videos) => {
             if (err) {
                 return res.status(500).json({
-                    ok: fasle,
+                    ok: fasle, 
                     msg: 'Error cargando Video!',
                     errors: err
                 });
@@ -76,7 +76,7 @@ app.get('/:id', (req, res) => {
 //  Actualizar video
 // ===================================================
 
-/* app.put('/:id&:categoria&:director&:tipo', mAuth.verificaToken, (req, res) => {
+app.put('/:id&:categoria&:director&:tipo', mAuth.verificaToken, (req, res) => {
     
     var id = req.params.id;
     var categoria = req.params.categoria;
@@ -121,7 +121,7 @@ app.get('/:id', (req, res) => {
             });
         }); 
     });
-}); */
+});
 
 // ===================================================
 //  Actualizar video 2
@@ -155,7 +155,7 @@ app.put('/:id', mAuth.verificaToken, (req, res) => {
         video.descripcion = body.descripcion;
         video.usuario = req.usuario._id;
         
-     
+        console.log(video);
         video.save( (err, videoGuardado) => {
             if(err) {
                 return res.status(400).json({
