@@ -55,16 +55,17 @@
     </div>
     <div class="col-md-3">
         <div class="card card-body">
-          <h4 class="box-title m-b-0">Img. Contenido </h4>
-          <p class="text-muted m-b-30 font-13">nombre</p>
-          <img (click)="cambiarFoto()" [src]="video.img | imagen:'video'" class="rounded img-fluid" alt="imagen video">
+            <h4 class="box-title m-b-0">Subir Video</h4>
+            <br>
+            <br>
+            <img (click)="subirVideo()" src="../../../assets/images/upload.png" class="rounded img-fluid" alt="imagen subida">
         </div>
     </div>
-    <!-- <div class="col-md-3" *ngIf="medico._id">
+    <div class="col-md-3">
         <div class="card card-body">
-          <h4 class="box-title m-b-0">Fotografía</h4>
-          <p class="text-muted m-b-30 font-13">{{medico.nombre}}</p>
-          <img (click)="cambiarFoto()"[src]="medico.img | imagen:'medico'" class="img-circle img-fluid pointer" alt="medico.nombre">
+          <h4 class="box-title m-b-0">Img. Contenido </h4>
+          <p class="text-muted m-b-30 font-13">{{video.nombre}}</p>
+          <img (click)="cambiarFoto()" [src]="video.img | imagen:'video'" class="rounded img-fluid pointer" alt="imagen video">
         </div>
-    </div> -->
+    </div>
 </div>
