@@ -3,6 +3,13 @@ var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var serveIndex = require('serve-index');
+const https = require('https');
+const fs = require('fs');
+
+const options = {
+    key: fs.readFileSync('./certs/key.pem'),
+    cert: fs.readFileSync('./certs/cert.pem')
+  };
 
 //iniciar variables s
 var app = express();
@@ -60,6 +67,6 @@ app.use('/', appRoutes);
 
  
 //Escuchar peticion
-app.listen(3000, () => {
+https.createServer(options, app).listen(3000, ()=> {
     console.log('Express server puerto 3000: \x1b[32m%s\x1b[0m','online');
 });

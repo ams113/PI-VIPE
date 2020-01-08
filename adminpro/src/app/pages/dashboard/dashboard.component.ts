@@ -39,7 +39,7 @@ export class DashboardComponent implements OnInit {
 
   playVideo(nombre) {
     console.log(nombre);
-    const url = 'http://localhost:3000/imagenes/ficheros/' + nombre;
+    const url = 'https://localhost:3000/imagenes/ficheros/' + nombre;
     this.contenido = url;
     this.video.nativeElement.src = url;
     this.video.nativeElement.load();
