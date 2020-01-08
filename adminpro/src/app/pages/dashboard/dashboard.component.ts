@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Video } from '../../models/video.model';
 import { VideoService } from '../../services/video/video.service';
 
@@ -7,12 +7,18 @@ import { VideoService } from '../../services/video/video.service';
   templateUrl: './dashboard.component.html',
   styles: []
 })
+
 export class DashboardComponent implements OnInit {
+
+  @ViewChild('video')
+
+  public video: ElementRef;
 
   videos: Video[] = [];
   totalRegistros = 0;
   desde = 0;
   cargando = true;
+  contenido = '';
 
   constructor( public _videoService: VideoService) { }
 
@@ -29,6 +35,15 @@ export class DashboardComponent implements OnInit {
         this.totalRegistros = resp.total;
       this.cargando = false;
     });
+  }
+
+  playVideo(nombre) {
+    console.log(nombre);
+    const url = 'http://localhost:3000/imagenes/ficheros/' + nombre;
+    this.contenido = url;
+    this.video.nativeElement.src = url;
+    this.video.nativeElement.load();
+    this.video.nativeElement.play();
   }
 
 }
