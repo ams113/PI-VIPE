@@ -1,5 +1,12 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "defaults": {
+    "serve": {
+        "sslKey": "/certs/server.key",
+        "sslCert": "/certs/server.cert",
+        "ssl": true
+    }
+  },
   "project": {
     "name": "adminpro"
   },

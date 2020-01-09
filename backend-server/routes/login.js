@@ -190,8 +190,8 @@ function obtenerMenu( role ) {
           icono: 'mdi mdi-folder-lock-open',
           submenu: [
             {titulo: 'Videos', url: '/videos'},
-            {titulo: 'Hospitales', url: '/hospitales'},
-            {titulo: 'Médicos', url: '/medicos'}
+            /* {titulo: 'Hospitales', url: '/hospitales'},
+            {titulo: 'Médicos', url: '/medicos'} */
           ]
         }
       ];

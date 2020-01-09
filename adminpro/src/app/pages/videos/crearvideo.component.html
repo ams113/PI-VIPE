@@ -56,9 +56,11 @@
     <div class="col-md-3">
         <div class="card card-body">
             <h4 class="box-title m-b-0">Subir Video</h4>
+            <p *ngIf="video.fichero"><i class="fa fa-film"></i> {{video.fichero}}</p>
             <br>
             <br>
             <img (click)="subirVideo()" src="../../../assets/images/upload.png" class="rounded img-fluid" alt="imagen subida">
+            
         </div>
     </div>
     <div class="col-md-3">
