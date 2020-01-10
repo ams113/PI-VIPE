@@ -30,13 +30,13 @@
               <table class="table table-hover">
                 <thead>
                   <tr>
-                    <th>Imagen</th>
-                    <th>Fichero</th>
-                    <th>Tipo</th>
+                    <th>Imagen</th>                    
                     <th>Título</th>
+                    <th>Director</th>                    
+                    <th>Descripcion</th>                    
                     <th>Categoría</th>
-                    <th>Director</th>
-                    <th></th>
+                    <th>Tipo</th>
+                    
                   </tr>
                 </thead>
                 <tbody>
@@ -44,44 +44,29 @@
                     <td class="w70">
                       <img (click)="actualizarVideo(video)" [src]="video.img | imagen:'video'" class="img-50 pointer" alt="video.nombre">                       
                     </td>
-                    <td class="w70">
+                    <!-- <td class="w70">
                       <img (click)="actualizarFichero(video)" [src]="video.img | imagen:'video'" class="img-50 pointer" alt="video.nombre">    
+                    </td> -->
+                    <td>
+                      {{ video.nombre }}
                     </td>
                     <td>
-                      <select [(ngModel)]="video.tipo" name="tipo" class="form-control">
-                        <option value="PELICULA">Pelicula</option>
-                        <option value="SERIE">Serie</option>
-                      </select>
-                    </td>                    
-                    <td>
-                      <input [(ngModel)]="video.nombre" name="nombre" type="text" class="form-control" placeholder="Nombre del video">
+                      {{video.director}}
                     </td>
                     <td>
-                      <input [(ngModel)]="video.descripcion" name="descripcion" type="text" class="form-control" placeholder="descripcion">
+                      {{ video.descripcion}} 
                     </td>
                     <td>
-                      <select [(ngModel)]="video.categoria" name="categoria" class="form-control">
-                        <option value="ACCION">Acción</option>
-                        <option value="AVENTURAS">Aventuras</option>
-                        <option value="COMEDIAS">Comedias</option>
-                        <option value="BELICAS">Belicas</option>
-                        <option value="MUSICALES">Musicales</option>
-                        <option value="TERROR">Terror</option>
-                        <option value="CIENCIA FICCION">Ciencia Ficción</option>
-                      </select>
+                      {{ video.categoria }}
                     </td>
                     <td>
-                      <input [(ngModel)]="video.director" name="nombre" type="text" class="form-control" placeholder="Director">
-                    </td>
+                      {{ video.tipo }}
+                    </td>                                                                        
                     <td>
                       <button [routerLink]="['/video', video._id]"
                          class="btn btn-primary">
                           <i class="fa fa-edit"></i>
                         </button>
-                      <button (click)="guardarVideo(video)" class="btn btn-primary">
-                        <i class="fa fa-save"></i>
-                      </button>
-
                       <button (click)="borrarvideo(video)" class="btn btn-danger">
                         <i class="fa fa-trash-o"></i>
                       </button>
