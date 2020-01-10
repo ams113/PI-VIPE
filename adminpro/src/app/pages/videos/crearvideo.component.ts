@@ -58,7 +58,7 @@ export class CrearVideoComponent implements OnInit {
     this._videoService.createVideo2( this.video )
         .subscribe( video => {
            this.video._id = video._id;
-           this.router.navigate(['/video', video._id]);
+           this.router.navigate(['/videos']);
 
         });
   }
