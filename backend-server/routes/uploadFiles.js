@@ -1,9 +1,12 @@
 //Requires
 var express = require('express');
 var fileUpload = require('express-fileupload');
-var fs = require('fs');
-
 var video= require('../models/video');
+var fs = require('fs');
+var crypto = require('crypto');
+
+var algorithm = 'aes-192-cbc';
+var password = 'Password used to generate key';
 
 //iniciar variables
 var app = express();
@@ -23,7 +26,7 @@ app.put('/:tipo/:id', (req, res, next) => {
             msg: 'Tipo de colección no es válida',
             errors: { message: 'Tipo de colección no es valida'}
         });
-    }
+    } 
     
     if (!req.files) {        
         res.status(400).json({
@@ -62,9 +65,12 @@ app.put('/:tipo/:id', (req, res, next) => {
                 msg: 'Error al mover archivo',
                 errors: err
             });
-        }        
+        } 
+        console.log("Cifrando----------");
+        cifrar(path);           
+        //descifrar(cifrar(path)); 
         uploadByType (tipo, id, nombreArchivo, res);
-    });   
+    }); 
 });
 
 function uploadByType (tipo, id, nombreArchivo, res) {   
@@ -109,5 +115,23 @@ function uploadByType (tipo, id, nombreArchivo, res) {
         });
     }
 }
+function cifrar(text) {
+    var pathCifrado = text + '.encrypted';
+    var input = fs.createReadStream(text);    
+    var output = fs.createWriteStream(pathCifrado);
+    var cifrado = crypto.createCipher(algorithm,password);
+    input.pipe(cifrado).pipe(output);
+    
+    return pathCifrado;
+}
 
-module.exports = app;
+function descifrar(text) {   
+    var input = fs.createReadStream(text);
+    
+    var output = fs.createWriteStream(text + '.mp4');
+    var descifrado = crypto.createDecipher(algorithm,password);
+    input.pipe(descifrado).pipe(output); 
+    console.log('correcto');
+}
+
+module.exports = app; 
