@@ -172,34 +172,43 @@ app.post('/', (req, res) => {
 });
 
 function obtenerMenu( role ) {
+    if(role === 'USER_ROLE') {
+        var menu = [
+            {
+              titulo: 'Principal',
+              icono: 'mdi mdi-gauge',
+              submenu: [
+                {titulo: 'Contenido', url: '/dashboard'}
+              ]
+            }
+          ];
+    }
+    else {
+        var menu = [
+            {
+              titulo: 'Principal',
+              icono: 'mdi mdi-gauge',
+              submenu: [
+                {titulo: 'Contenido', url: '/dashboard'}
+              ]
+            },
+            {
+              titulo: 'Mantenimiento',
+              icono: 'mdi mdi-folder-lock-open',
+              submenu: [
+                {titulo: 'Videos', url: '/videos'},
+                {titulo: 'Usuarios', url: '/usuarios'}
+              ]
+            }
+          ];
+    }
 
-    var menu = [
-        {
-          titulo: 'Principal',
-          icono: 'mdi mdi-gauge',
-          submenu: [
-            {titulo: 'Dashboard', url: '/dashboard'}
-            /* {titulo: 'ProgressBar', url: '/progress'},
-            {titulo: 'Gráficas', url: '/graficas1'},
-            {titulo: 'Promesas', url: '/promesas'},
-            {titulo: 'Rxjs', url: '/rxjs'} */
-          ]
-        },
-        {
-          titulo: 'Mantenimiento',
-          icono: 'mdi mdi-folder-lock-open',
-          submenu: [
-            {titulo: 'Videos', url: '/videos'},
-            /* {titulo: 'Hospitales', url: '/hospitales'},
-            {titulo: 'Médicos', url: '/medicos'} */
-          ]
-        }
-      ];
 
-      
+     /* 
       if (role === 'ADMIN_ROLE') {
+          
           menu[1].submenu.unshift({titulo: 'Usuarios', url: '/usuarios'})
-      }
+      }*/
     
     return menu;
 }
