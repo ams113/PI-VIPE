@@ -26,8 +26,9 @@ export class RegisterComponent implements OnInit {
     this.forma = new FormGroup({
       nombre: new FormControl(null, Validators.required ),
       correo: new FormControl(null, [Validators.required, Validators.email]),
+      tipocontrato: new FormControl(null, Validators.required ),
       password: new FormControl(null, Validators.required ),
-      password2: new FormControl(null, Validators.required ),
+      password2: new FormControl(null, Validators.required ),      
       condiciones: new FormControl(false)
     }, { validators: this.matchField( 'password', 'password2' ) });
 
@@ -36,6 +37,7 @@ export class RegisterComponent implements OnInit {
       correo: 'ejemplo@dominio.com',
       password: '123456',
       password2: '123456',
+      tipocontrato: 'Peliculas',
       condiciones: true
     });
   }
@@ -59,6 +61,7 @@ export class RegisterComponent implements OnInit {
     if ( this.forma.invalid )  {
       return;
     }
+
     if ( !this.forma.value.condiciones ) {
       swal('Importante', 'Debe de aceptar las condiciones', 'warning');
       return;
@@ -70,9 +73,10 @@ export class RegisterComponent implements OnInit {
     const usuario = new Usuario(
       this.forma.value.nombre,
       this.forma.value.correo,
-      this.forma.value.password
+      this.forma.value.password,
+      this.forma.value.tipocontrato
     );
-
+    console.log(usuario);
     this._usuarioService.crearUsuario(usuario).subscribe( resp => this.router.navigate(['/login']));
   }
 

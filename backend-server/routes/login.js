@@ -20,6 +20,7 @@ var mdAuth = require('../middlewares/autenticacion');
 // ===================================================
 
 app.get('/renuevatoken', mdAuth.verificaToken, (req, res) => {
+    
     var user = req.usuario;
     var token = jwt.sign({ usuario: user}, SEED, {expiresIn: 14400}); //4 horas
 
@@ -94,8 +95,7 @@ async function verify(token) {
                 });
             }
         } else {
-            // El usuario no existe hay que crearlo
-
+            // El usuario no existe hay que crearlo            
             var usuario = new Usuario();
 
             usuario.nombre = googleUsuer.nombre;
@@ -129,7 +129,6 @@ async function verify(token) {
 // ===================================================
 
 app.post('/', (req, res) => {
-
     var body = req.body;
 
     Usuario.findOne( {email: body.email}, (err, user) => {
@@ -202,13 +201,6 @@ function obtenerMenu( role ) {
             }
           ];
     }
-
-
-     /* 
-      if (role === 'ADMIN_ROLE') {
-          
-          menu[1].submenu.unshift({titulo: 'Usuarios', url: '/usuarios'})
-      }*/
     
     return menu;
 }

@@ -29,8 +29,12 @@ app.get('/', (req, res, next) => {
                 });
             }
 
-            Video.count({}, (err, num) => {
-
+            Video.countDocuments({}, (err, num) => {
+                
+                videos = videos.filter(function(value, index, arr){          
+                    return value.tipo === req.query.tipocontrato;                
+                });
+                
                 res.status(200).json({
                     ok: true,
                     videos: videos,

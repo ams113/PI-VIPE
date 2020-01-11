@@ -101,6 +101,7 @@ app.post('/', (req, res) => {
         nombre: body.nombre,
         email: body.email,
         password: bcrypt.hashSync(body.password, 10),
+        tipocontrato: body.tipocontrato,
         img: body.img,
         role: body.role
     });
