@@ -4,6 +4,7 @@ var Usuario = require('../models/usuario');
 var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
 var mAuth = require('../middlewares/autenticacion');
+var pbkdf2 = require('../middlewares/pbkdf2');
 //iniciar variables
 var app = express();
 
@@ -96,6 +97,20 @@ app.put('/:id', [mAuth.verificaToken, mAuth.verifyMyselfOrAdmin], (req, res) => 
 app.post('/', (req, res) => {
 
     var body = req.body;
+
+    /* pbkdf2.hashPassword(body.password), function(err, data) {
+        if (err){
+            console.log('error pbkdf2');
+        } else {
+            console.log(data);
+        }
+
+    }; */
+    
+    console.log(pbkdf2.hashPassword(body.password));
+    
+
+ 
 
     var usuario = new Usuario({
         nombre: body.nombre,
