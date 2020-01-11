@@ -6,8 +6,9 @@
         <div class="card-body">
             <form ngNativeValidate [formGroup]="forma" (ngSubmit)="registrarUsuario()" class="form-horizontal form-material" id="loginform" action="index.html">
                 <a href="javascript:void(0)" class="text-center db"><img src="assets/images/logo-icon.png" alt="Home" /><br/><img src="../assets/images/logo-text.png" alt="Home" /></a>
-                <h3 class="box-title m-t-40 m-b-0">Register Now</h3><small>Create your account and enjoy</small>
-                <div class="form-group m-t-20">
+                <h3 class="box-title m-t-40 m-b-0"><b>Formulario de registro</b></h3>
+                <small>Crea una cuenta y disfruta de VIPE</small>
+                <div class="form-group">
                     <div class="col-xs-12">
                         <input formControlName="nombre" name="name" class="form-control" type="text" required placeholder="Nombre">
                     </div>
@@ -29,7 +30,7 @@
                 </div>
                 <div class="form-group" *ngIf="forma.errors?.matchField && !forma.pristine">
                     <p class="text-danger">
-                        La password no coincide
+                        La contraseña no coincide
                     </p>
                 </div>
 

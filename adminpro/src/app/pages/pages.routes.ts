@@ -26,15 +26,10 @@ const pagesRoutes: Routes = [
                 path: 'dashboard',
                 component: DashboardComponent,
                 canActivate: [ VerificaTokenGuard],
-                data: {titulo: 'Dasboard'}
+                data: {titulo: 'Contenido VIPE'}
             },
-            //{ path: 'progress', component: ProgressComponent, data: {titulo: 'Progress'} },
-            //{ path: 'graficas1', component: Graficas1Component, data: {titulo: 'Gráficas'} },
-            //{ path: 'promesas', component: PromesasComponent, data: {titulo: 'Promesas'} },
-            //{ path: 'rxjs', component: RxjsComponent, data: {titulo: 'RxJs'} },
             { path: 'account-settings', component: AccountSettingsComponent, data: {titulo: 'Ajustes del Tema'} },
             { path: 'profile', component: ProfileComponent, data: {titulo: 'Perfil de usuario'} },
-            // { path: 'busqueda/:termino', component: BusquedaComponent, data: {titulo: 'Buscador'} },
             // Mantenimientos
             {
                 path: 'usuarios',
@@ -42,11 +37,8 @@ const pagesRoutes: Routes = [
                 canActivate: [ AdminGuard],
                 data: {titulo: 'Gestión de Usuarios'}
             },
-            // { path: 'hospitales', component: HospitalesComponent, data: {titulo: 'Gestión de Hospitales'} },
-            { path: 'videos', component: VideosComponent, data: {titulo: 'Gestión de Contenido'} },
-            { path: 'video/:id', component: CrearVideoComponent, data: {titulo: 'Creacion de Contenido'} },
-            // { path: 'medicos', component: MedicosComponent, data: {titulo: 'Gestión de Médicos'} },
-            // { path: 'medico/:id', component: MedicoComponent, data: {titulo: 'Actualizar Médico'} },
+            { path: 'videos', component: VideosComponent, canActivate: [ AdminGuard], data: {titulo: 'Gestión de Contenido'} },
+            { path: 'video/:id', component: CrearVideoComponent, canActivate: [ AdminGuard], data: {titulo: 'Creacion de Contenido'} },
             { path: '', pathMatch: 'full', redirectTo: '/dashboard' },
 ];
 

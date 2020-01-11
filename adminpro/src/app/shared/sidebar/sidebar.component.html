@@ -14,12 +14,11 @@
                         <li><a routerLinkActive="active" routerLink="/profile">Mi Perfil</a></li>
                         <!-- <li><a href="javascript:void()">My Balance</a></li> -->
                         <!-- <li><a href="javascript:void()">Inbox</a></li> -->
-                        <li><a routerLinkActive="active" routerLink="/account-settings">Account Setting</a></li>
-                        <li><a (click)="_usuarioServide.logout()" class="pointer">Logout</a></li>
+                        <li><a routerLinkActive="active" routerLink="/account-settings">Preferencias</a></li>
+                        <li><a (click)="_usuarioServide.logout()" class="pointer">Salir</a></li>
                     </ul>
                 </li>
-                <li class="nav-devider"></li>
-                <li class="nav-small-cap">PERSONAL</li>
+                <li class="nav-devider"></li>                
                 <li *ngFor="let menu of _sidebar.menu">
                     <a class="has-arrow waves-effect waves-dark" aria-expanded="false"><i [class]="menu.icono"></i><span class="hide-menu">{{menu.titulo}} 
                         <span class="label label-rouded label-themecolor pull-right">{{menu.submenu.length}}</span></span></a>
