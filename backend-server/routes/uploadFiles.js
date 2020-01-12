@@ -4,7 +4,6 @@ var fileUpload = require('express-fileupload');
 var video= require('../models/video');
 var fs = require('fs');
 var crypto = require('crypto');
-var tar  = require ('tar-fs');
 
 //iniciar variables
 var app = express();
@@ -68,25 +67,7 @@ app.put('/:tipo/:id', (req, res, next) => {
                 errors: err
             });
         } 
-        console.log("Cifrando----------"+nombreArchivo);
- 
-        //cifrar(path);           
-        //descifrar(cifrar(path)); 
         encryptAES(nombreArchivo);
-
-        // Borrar el archivo sin cifrar
-        /* fs.unlink( path, err => {
-            if (err) {
-                return res.status(500).json({
-                    ok: false,
-                    msg: 'Error al sobrescribir archivo',
-                    errors: err
-                });
-            }
-        }); */
-
-        //decryptAES(nombreArchivo);
-
         uploadByType (tipo, id, nombreArchivo, res);
     }); 
 });
@@ -135,37 +116,17 @@ function uploadByType (tipo, id, nombreArchivo, res) {
     }
 }
 
-/* function cifrar(text) {
-    var pathCifrado = text + '.encrypted';
-    var input = fs.createReadStream(text);    
-    var output = fs.createWriteStream(pathCifrado);
-    var cifrado = crypto.createCipher(algorithm,password);
-    input.pipe(cifrado).pipe(output);
-    
-    return pathCifrado;
-}
-
-function descifrar(text) {   
-    var input = fs.createReadStream(text);
-    
-    var output = fs.createWriteStream(text + '.mp4');
-    var descifrado = crypto.createDecipher(algorithm,password);
-    input.pipe(descifrado).pipe(output); 
-    console.log('correcto');
-} */
-
-
 function encryptAES(nombre) {
     console.log("crfrador ",nombre);
 
     
-    tar.pack('./uploads/ficheros/'+nombre).pipe(encrypt).pipe(fs.createWriteStream('./uploads/cifrados/'+nombre + '.tar'));
+   // tar.pack('./uploads/ficheros/'+nombre).pipe(encrypt).pipe(fs.createWriteStream('./uploads/cifrados/'+nombre + '.tar'));
 }
 
 function decryptAES(nombre) {
     console.log("decryptAES ",nombre);
 
-    fs.createReadStream('./uploads/cifrados/'+nombre +'.tar').pipe(decrypt).pipe(tar.extract('./nice'));
+    //fs.createReadStream('./uploads/cifrados/'+nombre +'.tar').pipe(decrypt).pipe(tar.extract('./nice'));
 }
 
 module.exports = app; 
