@@ -30,21 +30,12 @@ function hashPassword(password, cb) {
     if (err) {
       return callback(err);
     }
-    console.log(password);
-    console.log(password, salt, config.iterations, config.hashBytes);
-    
-    
-
     crypto.pbkdf2(password, salt, config.iterations, config.hashBytes, config.digest, function(err, hash) {
 
       if (err) {
         return callback(err);
       }
-        console.log('aqui1');
       var combined = new Buffer(hash.length + salt.length + 8);
-      
-      
-
       // include the size of the salt so that we can, during verification,
       // figure out how much of the hash is salt
       combined.writeUInt32BE(salt.length, 0, true);
@@ -53,11 +44,10 @@ function hashPassword(password, cb) {
 
       salt.copy(combined, 8);
       hash.copy(combined, salt.length + 8);
-      console.log('aqui2');
-      //return cb(null, combined);
-      console.log(combined);
+      return cb(null, combined);
+ 
       
-      return combined;
+      //return combined;
     });
   });
 }
