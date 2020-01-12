@@ -17,8 +17,12 @@ export class VideoService {
   constructor(public http: HttpClient, public _usuarioService: UsuarioService) { }
 
   cargarVideos( desde: number = 0) {
+    if(this._usuarioService.usuario.role === "ADMIN_ROLE") {
+      this._usuarioService.usuario.tipocontrato = "TODO"
+    }      
+    
     const url = environment.URL_SERVICIOS + '/video?desde=' + desde + '&tipocontrato=' + this._usuarioService.usuario.tipocontrato;
-
+    
     return this.http.get( url );
   }
 
