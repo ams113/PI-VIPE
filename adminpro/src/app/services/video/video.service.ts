@@ -6,6 +6,7 @@ import { UsuarioService } from '../usuario/usuario.service';
 
 import * as _swal from 'sweetalert';
 import { SweetAlert } from 'sweetalert/typings/core';
+import { Usuario } from '../../models/usuario.model';
 const swal: SweetAlert = _swal as any;
 
 @Injectable()
@@ -16,8 +17,12 @@ export class VideoService {
   constructor(public http: HttpClient, public _usuarioService: UsuarioService) { }
 
   cargarVideos( desde: number = 0) {
-    const url = environment.URL_SERVICIOS + '/video?desde=' + desde;
-    console.log(url);
+    if(this._usuarioService.usuario.role === "ADMIN_ROLE") {
+      this._usuarioService.usuario.tipocontrato = "TODO"
+    }      
+    
+    const url = environment.URL_SERVICIOS + '/video?desde=' + desde + '&tipocontrato=' + this._usuarioService.usuario.tipocontrato;
+    
     return this.http.get( url );
   }
 

@@ -5,7 +5,7 @@
     <div class="login-box card">
         <div class="card-body">
             <form ngNativeValidate [formGroup]="forma" (ngSubmit)="registrarUsuario()" class="form-horizontal form-material" id="loginform" action="index.html">
-                <a href="javascript:void(0)" class="text-center db"><img src="assets/images/logo-icon.png" alt="Home" /><br/><img src="../assets/images/logo-text.png" alt="Home" /></a>
+                <a href="javascript:void(0)" class="text-center db"><img src="assets/images/logo-icon-flau.png" alt="Home" /><br/><img src="../assets/images/logo-text-flau.png" alt="Home" /></a>
                 <h3 class="box-title m-t-40 m-b-0"><b>Formulario de registro</b></h3>
                 <small>Crea una cuenta y disfruta de VIPE</small>
                 <div class="form-group">
@@ -20,7 +20,15 @@
                 </div>
                 <div class="form-group ">
                     <div class="col-xs-12">
-                        <input formControlName="password" name="password" class="form-control" type="password" required placeholder="Password">
+                        <select formControlName="tipocontrato" name="tipocontrato" class="form-control">
+                            <option value="Peliculas">Peliculas</option>
+                            <option value="Series">Series</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <div class="col-xs-12">
+                        <input formControlName="password" name="password" class="form-control" type="password" pattern=".{8,12}" title="8 a 12 caracteres" required placeholder="Password">
                     </div>
                 </div>
                 <div class="form-group">
@@ -40,7 +48,7 @@
                     <div class="col-md-12">
                         <div class="checkbox checkbox-primary p-t-0">
                             <input class="form-control" formControlName="condiciones" name="condiciones" id="checkbox-signup" type="checkbox">
-                            <label for="checkbox-signup"> I agree to all <a href="#">Terms</a></label>
+                            <label for="checkbox-signup"> De acuerdo con los<a href="#">Terminos y condiciones</a></label>
                         </div>
                     </div>
                 </div>
@@ -51,7 +59,7 @@
                 </div>
                 <div class="form-group m-b-0">
                     <div class="col-sm-12 text-center">
-                        <p>Already have an account? <a routerLink="/login" class="text-info m-l-5"><b>Sign In</b></a></p>
+                        <p>¿Tienes una cuenta en VIPE? <a routerLink="/login" class="text-info m-l-5"><b>Entrar</b></a></p>
                     </div>
                 </div>
             </form>

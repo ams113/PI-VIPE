@@ -3,8 +3,6 @@ var express = require('express');
 var fileUpload = require('express-fileupload');
 var fs = require('fs');
 
-var Hospital = require('../models/hospital');
-var Medico = require('../models/medico');
 var Usuario = require('../models/usuario');
 var video= require('../models/video');
 
@@ -21,7 +19,7 @@ app.put('/:tipo/:id', (req, res, next) => {
 
      // tipos de colección
 
-    var tiposValidos = ['hospitales', 'medicos', 'usuarios', 'videos'];
+    var tiposValidos = ['usuarios', 'videos'];
 
     if (tiposValidos.indexOf(tipo) < 0) {
         res.status(400).json({

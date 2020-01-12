@@ -1,7 +1,5 @@
 //Requires
 var express = require('express');
-var Hospital = require('../models/hospital');
-var Medico = require('../models/medico');
 var Usuario = require('../models/usuario');
 
 //iniciar variables
@@ -26,15 +24,6 @@ app.get('/coleccion/:tabla/:busqueda', (req, res) => {
         case 'usuarios':
             promesa = buscarUsuario(busqueda, regex, desde, hasta);
             break;
-
-        case 'medicos':
-            promesa = buscarMedicos(busqueda, regex, desde, hasta);
-            break;
-
-        case 'hospitales':
-            promesa = buscarHospitales(busqueda, regex, desde, hasta);
-            break;
-
         default:
             res.status(400).json({
                 ok: true,
@@ -66,8 +55,6 @@ app.get('/todo/:busqueda', (req, res, next) => {
     var regex = new RegExp(busqueda, 'i');
 
     Promise.all([
-        buscarHospitales(busqueda, regex, desde, hasta),
-        buscarMedicos(busqueda, regex, desde, hasta),
         buscarUsuario(busqueda, regex, desde, hasta)
     ]).then( respuestas => {
         var total = 0;
@@ -83,59 +70,11 @@ app.get('/todo/:busqueda', (req, res, next) => {
         res.status(200).json({
             ok: true,
             total: total,
-            hospitales: respuestas[0].consulta,
-            medicos: respuestas[1].consulta,
             usuarios: respuestas[2].consulta
         });
     });
    
 });
-
-function buscarHospitales(busqueda, regex, desde, hasta) {
-    return new Promise((resolve, reject) => {
-        Hospital.find({ nombre: regex })
-            .populate('usuario', 'nombre email img')
-            .skip(desde)
-            .limit(hasta)
-            .exec((err, hospitales) => {
-                if(err) {
-                    reject('Error al cargar hospitales', err);
-                } else {
-                    Hospital.count({}, (err, num) => {
-                        var obj = {
-                            consulta: hospitales,
-                            total: num
-                        };
-                        
-                        resolve(obj);
-                    });
-                }
-        });
-    });
-}
-function buscarMedicos(busqueda, regex, desde, hasta) {
-    return new Promise((resolve, reject) => {
-        Medico.find({ nombre: regex })
-        .populate('usuario', 'nombre email img')
-        .populate('hospital')
-        .skip(desde)
-        .limit(hasta)
-        .exec((err, medicos) => {
-            if(err) {
-                reject('Error al cargar medicos', err);
-            } else {
-                Medico.count({}, (err, num) => {
-                    var obj = {
-                        consulta: medicos,
-                        total: num
-                    };
-                    
-                    resolve(obj);
-                });
-            }
-        });
-    });
-}
 
 function buscarUsuario(busqueda, regex, desde, hasta) {
     return new Promise((resolve, reject) => {
