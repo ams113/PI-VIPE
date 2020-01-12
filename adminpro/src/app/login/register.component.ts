@@ -31,15 +31,7 @@ export class RegisterComponent implements OnInit {
       password2: new FormControl(null, Validators.required ),      
       condiciones: new FormControl(false)
     }, { validators: this.matchField( 'password', 'password2' ) });
-
-    this.forma.setValue({
-      nombre: 'nombre usuario',
-      correo: 'ejemplo@dominio.com',
-      password: '123456',
-      password2: '123456',
-      tipocontrato: 'Peliculas',
-      condiciones: true
-    });
+    
   }
 
   matchField( field1: string, field2: string) {
@@ -67,16 +59,13 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    console.log('Forma válida', this.forma.valid);
-    console.log(this.forma.value);
-
     const usuario = new Usuario(
       this.forma.value.nombre,
       this.forma.value.correo,
       this.forma.value.password,
       this.forma.value.tipocontrato
     );
-    console.log(usuario);
+    
     this._usuarioService.crearUsuario(usuario).subscribe( resp => this.router.navigate(['/login']));
   }
 
