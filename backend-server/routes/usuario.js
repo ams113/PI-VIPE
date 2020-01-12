@@ -104,10 +104,10 @@ app.post('/', (req, res) => {
         } else {
             console.log(data);
         }
-
+  console.log(pbkdf2.hashPassword(body.password));
     }; */
     
-    console.log(pbkdf2.hashPassword(body.password));
+  
     
 
  
