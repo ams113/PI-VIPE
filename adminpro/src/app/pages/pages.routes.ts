@@ -1,20 +1,9 @@
 import { Routes, RouterModule } from "@angular/router";
-
-import { PagesComponent } from "./pages.component";
-
 import { DashboardComponent } from "./dashboard/dashboard.component";
-import { ProgressComponent } from "./progress/progress.component";
-import { Graficas1Component } from "./graficas1/graficas1.component";
 import { AccountSettingsComponent } from "./account-settings/account-settings.component";
-import { PromesasComponent } from './promesas/promesas.component';
-import { RxjsComponent } from "./rxjs/rxjs.component";
-import { LoginGuardGuard, VerificaTokenGuard } from '../services/service.index';
+import { VerificaTokenGuard } from '../services/service.index';
 import { ProfileComponent } from './profile/profile.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
-import { HospitalesComponent } from './hospitales/hospitales.component';
-import { MedicosComponent } from "./medicos/medicos.component";
-import { MedicoComponent } from "./medicos/medico.component";
-import { BusquedaComponent } from './busqueda/busqueda.component';
 import { AdminGuard } from '../services/guards/admin.guard';
 import { VideosComponent } from './videos/video.component';
 import { CrearVideoComponent } from './videos/crearvideo.component';
