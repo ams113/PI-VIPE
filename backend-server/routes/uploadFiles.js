@@ -11,6 +11,8 @@ var app = express();
 app.use(fileUpload());
 
 var key = 'Proteccion de la Informacion';
+var algorithm = 'aes-192-cbc';
+
 var encrypt = crypto.createCipher('aes-256-ctr', key);
 var decrypt = crypto.createDecipher('aes-256-ctr', key);
 
@@ -73,7 +75,7 @@ app.put('/:tipo/:id', (req, res, next) => {
 });
 
 function uploadByType (tipo, id, nombreArchivo, res) {   
-    decryptAES(nombreArchivo);
+    
     if (tipo  === 'ficheros') {
         
         video.findById(id, (err, video) => {
@@ -117,15 +119,22 @@ function uploadByType (tipo, id, nombreArchivo, res) {
 }
 
 function encryptAES(nombre) {
-    console.log("crfrador ",nombre);
+    console.log("crfrador ",nombre);    
 
+    const input = fs.createReadStream('./uploads/ficheros/'+ nombre );
+    const output = fs.createWriteStream('./uploads/cifrados/'+ nombre + '.cifrado');
     
-   // tar.pack('./uploads/ficheros/'+nombre).pipe(encrypt).pipe(fs.createWriteStream('./uploads/cifrados/'+nombre + '.tar'));
+    input.pipe(encrypt).pipe(output);
+     
 }
 
 function decryptAES(nombre) {
     console.log("decryptAES ",nombre);
 
+    const input = fs.createReadStream('./uploads/cifrados/'+ nombre + '.cifrado');
+    const output = fs.createWriteStream('./uploads/descifrados/'+ nombre);
+    
+    input.pipe(decipher).pipe(output);
     //fs.createReadStream('./uploads/cifrados/'+nombre +'.tar').pipe(decrypt).pipe(tar.extract('./nice'));
 }
 
