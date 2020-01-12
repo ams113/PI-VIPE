@@ -11,7 +11,7 @@ var app = express();
 app.use(fileUpload());
 
 var key = 'Proteccion de la Informacion';
-var algorithm = 'aes-192-cbc';
+var algorithm = 'aes-256-cbc';
 
 var encrypt = crypto.createCipher(algorithm, key);
 var decrypt = crypto.createDecipher(algorithm, key);
