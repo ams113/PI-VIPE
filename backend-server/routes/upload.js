@@ -3,8 +3,6 @@ var express = require('express');
 var fileUpload = require('express-fileupload');
 var fs = require('fs');
 
-var Hospital = require('../models/hospital');
-var Medico = require('../models/medico');
 var Usuario = require('../models/usuario');
 var video= require('../models/video');
 
