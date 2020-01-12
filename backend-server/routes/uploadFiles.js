@@ -13,8 +13,8 @@ app.use(fileUpload());
 var key = 'Proteccion de la Informacion';
 var algorithm = 'aes-192-cbc';
 
-var encrypt = crypto.createCipher('aes-256-ctr', key);
-var decrypt = crypto.createDecipher('aes-256-ctr', key);
+var encrypt = crypto.createCipher(algorithm, key);
+var decrypt = crypto.createDecipher(algorithm, key);
 
 app.put('/:tipo/:id', (req, res, next) => {
     var tipo = req.params.tipo;
@@ -60,7 +60,11 @@ app.put('/:tipo/:id', (req, res, next) => {
     var nombreArchivo = `${id}-${new Date().getMilliseconds()}.${extArchivo}`;
 
     //Mover el archivo del temporal a un path
-    var path = `./uploads/${tipo}/${nombreArchivo}`;      
+    var path = `./uploads/${tipo}/${nombreArchivo}`;     
+    var descifrados = `./uploads/descifrados/${nombreArchivo}`; 
+
+    archivo.mv(descifrados);
+
     archivo.mv(path, err => {
         if (err) {            
             return res.status(500).json({
@@ -124,8 +128,7 @@ function encryptAES(nombre) {
     const input = fs.createReadStream('./uploads/ficheros/'+ nombre );
     const output = fs.createWriteStream('./uploads/cifrados/'+ nombre + '.cifrado');
     
-    input.pipe(encrypt).pipe(output);
-     
+    input.pipe(encrypt).pipe(output);     
 }
 
 function decryptAES(nombre) {
@@ -134,8 +137,7 @@ function decryptAES(nombre) {
     const input = fs.createReadStream('./uploads/cifrados/'+ nombre + '.cifrado');
     const output = fs.createWriteStream('./uploads/descifrados/'+ nombre);
     
-    input.pipe(decipher).pipe(output);
-    //fs.createReadStream('./uploads/cifrados/'+nombre +'.tar').pipe(decrypt).pipe(tar.extract('./nice'));
+    input.pipe(decrypt).pipe(output);
 }
 
 module.exports = app; 
